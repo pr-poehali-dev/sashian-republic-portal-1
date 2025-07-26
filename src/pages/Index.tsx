@@ -32,6 +32,20 @@ const Index = () => {
     { sector: 'Соц. обеспечение', amount: 29, percentage: 8.1, color: '#7C3AED' }
   ];
 
+  const tradeData = [
+    { category: 'Экспорт', amount: 300, change: 8.2, color: 'green' },
+    { category: 'Импорт', amount: 280, change: 5.1, color: 'blue' },
+    { category: 'Торговый баланс', amount: 20, change: 15.3, color: 'purple' }
+  ];
+
+  const gdpGrowthData = [
+    { year: 2021, growth: 3.2 },
+    { year: 2022, growth: 4.1 },
+    { year: 2023, growth: 4.5 },
+    { year: 2024, growth: 4.8 },
+    { year: 2025, growth: 5.2 }
+  ];
+
   const militaryData = [
     { category: 'Истребители', count: 60, icon: 'Plane' },
     { category: 'Танки', count: 300, icon: 'Truck' },
@@ -39,6 +53,39 @@ const Index = () => {
     { category: 'БПЛА', count: 300, icon: 'Zap' },
     { category: 'Фрегаты', count: 10, icon: 'Anchor' },
     { category: 'Подводные лодки', count: 3, icon: 'Ship' }
+  ];
+
+  const militaryStructure = [
+    { 
+      branch: 'Сухопутные войска',
+      icon: 'Users',
+      equipment: [
+        'Танки: ~300 единиц',
+        'БТР: 800 единиц', 
+        'Артиллерия: 400 орудий',
+        'РСЗО: 150 единиц'
+      ]
+    },
+    {
+      branch: 'Военно-воздушные силы',
+      icon: 'Plane',
+      equipment: [
+        'Истребители: 60 единиц',
+        'БПЛА: 300 единиц',
+        'Бомбардировщики: 18 единиц',
+        'Транспортные самолёты: 12 единиц'
+      ]
+    },
+    {
+      branch: 'Военно-морской флот',
+      icon: 'Anchor',
+      equipment: [
+        'Фрегаты: 10 единиц',
+        'Противолодочные корабли: 7 единиц',
+        'Подводные лодки: 3 единицы',
+        'Ракетные катера: 16 единиц'
+      ]
+    }
   ];
 
   const provinces = [
@@ -112,7 +159,7 @@ const Index = () => {
       <main className="container mx-auto px-4 py-8">
         {activeSection === 'overview' && (
           <div className="space-y-8 animate-fade-in">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <Card className="p-6 bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
                 <div className="flex items-center gap-3 mb-4">
                   <Icon name="Building" size={24} className="text-blue-600" />
@@ -154,6 +201,20 @@ const Index = () => {
                   <p><span className="font-medium">Домен:</span> .sh</p>
                 </div>
               </Card>
+
+              <Card className="p-6 bg-gradient-to-br from-orange-50 to-red-100 border-orange-200">
+                <div className="flex items-center gap-3 mb-4">
+                  <Icon name="Users" size={24} className="text-orange-600" />
+                  <h3 className="text-lg font-semibold text-orange-900">Международные связи</h3>
+                </div>
+                <div className="space-y-2 text-sm">
+                  <p><span className="font-medium">Союзники:</span> Кальвария, Вестмарк</p>
+                  <p><span className="font-medium">Противники:</span> Кусария, Ортания</p>
+                  <p><span className="font-medium">Автомобильное движение:</span> правостороннее</p>
+                  <p><span className="font-medium">Телефонный код:</span> +47</p>
+                  <p><span className="font-medium">Код ISO:</span> SH / SAH</p>
+                </div>
+              </Card>
             </div>
 
             <Card className="p-6">
@@ -183,6 +244,135 @@ const Index = () => {
                     <Icon name="Music" size={16} />
                     <span>Национальный гимн</span>
                   </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        )}
+
+        {activeSection === 'geography' && (
+          <div className="space-y-8 animate-fade-in">
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                <Icon name="MapPin" size={20} className="text-green-600" />
+                География и климат
+              </h3>
+              
+              <div className="grid lg:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="font-semibold mb-4 text-green-700">Расположение и границы</h4>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex items-center gap-2">
+                      <Icon name="ArrowUp" size={16} className="text-blue-500" />
+                      <span><strong>Север:</strong> Сашианийский океан</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="ArrowRight" size={16} className="text-red-500" />
+                      <span><strong>Восток:</strong> Кусарийская Демократическая Республика</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="ArrowDown" size={16} className="text-green-500" />
+                      <span><strong>Юг:</strong> Государство Кальвария</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="ArrowLeft" size={16} className="text-purple-500" />
+                      <span><strong>Запад:</strong> Королевство Вестмарк</span>
+                    </div>
+                  </div>
+                  
+                  <h4 className="font-semibold mb-4 mt-6 text-green-700">Рельеф местности</h4>
+                  <div className="space-y-2 text-sm">
+                    <p><strong>Север:</strong> холмистые плато, леса, океан и горы с развитой промышленностью</p>
+                    <p><strong>Центр:</strong> равнины с развитой промышленностью</p>
+                    <p><strong>Юг:</strong> долины и степи, сельское хозяйство</p>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-4 text-blue-700">Климатические зоны</h4>
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 p-4 rounded-lg border">
+                      <h5 className="font-medium text-blue-800">Север</h5>
+                      <p className="text-sm text-blue-700">Умеренно-океанический климат<br/>Влажные лета, мягкие зимы</p>
+                    </div>
+                    <div className="bg-green-50 p-4 rounded-lg border">
+                      <h5 className="font-medium text-green-800">Центр</h5>
+                      <p className="text-sm text-green-700">Умеренно-континентальный климат<br/>Тёплое лето, холодные зимы</p>
+                    </div>
+                    <div className="bg-orange-50 p-4 rounded-lg border">
+                      <h5 className="font-medium text-orange-800">Юг</h5>
+                      <p className="text-sm text-orange-700">Субтропический климат<br/>Тёплые зимы, жаркое лето</p>
+                    </div>
+                  </div>
+                  
+                  <h4 className="font-semibold mb-3 mt-6 text-blue-700">Водные ресурсы</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center gap-2">
+                      <Icon name="Waves" size={16} className="text-blue-500" />
+                      <span>Река Асхиния</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="Circle" size={16} className="text-blue-500" />
+                      <span>Озеро Велара</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="Droplets" size={16} className="text-blue-500" />
+                      <span>Крупные водохранилища</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        )}
+
+        {activeSection === 'history' && (
+          <div className="space-y-8 animate-fade-in">
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                <Icon name="BookOpen" size={20} className="text-amber-600" />
+                История Сашианийской Республики
+              </h3>
+              
+              <div className="space-y-6">
+                <div className="border-l-4 border-amber-500 pl-6">
+                  <h4 className="font-semibold text-amber-700 mb-2">III тыс. до н.э. — Ранние поселения</h4>
+                  <p className="text-sm text-gray-600">Первые поселения на территории современной Сашиании. Формирование земледельческих общин.</p>
+                </div>
+                
+                <div className="border-l-4 border-blue-500 pl-6">
+                  <h4 className="font-semibold text-blue-700 mb-2">VI век до н.э. — Торговые города</h4>
+                  <p className="text-sm text-gray-600">Складывание торговых городов-государств. Развитие морской торговли и ремёсел.</p>
+                </div>
+                
+                <div className="border-l-4 border-purple-500 pl-6">
+                  <h4 className="font-semibold text-purple-700 mb-2">X–XIII века — Феодальные войны</h4>
+                  <p className="text-sm text-gray-600">Период феодальной раздробленности и междоусобных войн. Борьба за торговые пути и территории.</p>
+                </div>
+                
+                <div className="border-l-4 border-green-500 pl-6">
+                  <h4 className="font-semibold text-green-700 mb-2">XIV век — Образование двух государств</h4>
+                  <p className="text-sm text-gray-600">Формирование государств Сашия и Ания. Установление границ и торговых отношений.</p>
+                </div>
+                
+                <div className="border-l-4 border-red-500 pl-6">
+                  <h4 className="font-semibold text-red-700 mb-2">XIX век — Колонизация Ортанией</h4>
+                  <p className="text-sm text-gray-600">Период колониального господства. Эксплуатация природных ресурсов и принудительная модернизация.</p>
+                </div>
+                
+                <div className="border-l-4 border-indigo-500 pl-6">
+                  <h4 className="font-semibold text-indigo-700 mb-2">1947–1948 — Война за независимость</h4>
+                  <p className="text-sm text-gray-600">Объединённая борьба Сашии и Ании против колониального режима. Победа и подписание договора об объединении.</p>
+                </div>
+                
+                <div className="border-l-4 border-emerald-500 pl-6">
+                  <h4 className="font-semibold text-emerald-700 mb-2">15 августа 1948 года — Провозглашение независимости</h4>
+                  <p className="text-sm text-gray-600">Образование единой Сашианийской Республики. Принятие первой конституции и создание федеративного устройства.</p>
+                </div>
+                
+                <div className="border-l-4 border-cyan-500 pl-6">
+                  <h4 className="font-semibold text-cyan-700 mb-2">1960–1980 — Экономический бум</h4>
+                  <p className="text-sm text-gray-600">Массивные инвестиции в IT-сектор, энергетику и сельское хозяйство. Становление регионального лидера.</p>
                 </div>
               </div>
             </Card>
@@ -259,6 +449,63 @@ const Index = () => {
                 </div>
               </Card>
             </div>
+
+            {/* Новые графики и диаграммы */}
+            <div className="grid lg:grid-cols-2 gap-8">
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                  <Icon name="BarChart" size={20} className="text-purple-600" />
+                  Динамика роста ВВП
+                </h3>
+                <div className="space-y-4">
+                  {gdpGrowthData.map((data, index) => (
+                    <div key={index} className="flex items-center justify-between">
+                      <span className="text-sm font-medium">{data.year}</span>
+                      <div className="flex items-center gap-3 flex-1 ml-4">
+                        <div className="flex-1 bg-gray-200 rounded-full h-2">
+                          <div 
+                            className="bg-green-500 h-2 rounded-full transition-all duration-300"
+                            style={{ width: `${(data.growth / 6) * 100}%` }}
+                          />
+                        </div>
+                        <span className="text-sm text-green-600 font-semibold">{data.growth}%</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                  <Icon name="Globe" size={20} className="text-indigo-600" />
+                  Внешняя торговля
+                </h3>
+                <div className="space-y-4">
+                  {tradeData.map((item, index) => (
+                    <div key={index} className="bg-gray-50 p-4 rounded-lg">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="font-medium">{item.category}</span>
+                        <span className={`text-sm px-2 py-1 rounded ${
+                          item.change > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                        }`}>
+                          {item.change > 0 ? '+' : ''}{item.change}%
+                        </span>
+                      </div>
+                      <div className="text-xl font-bold text-gray-800">{item.amount} млрд сашинов</div>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg border">
+                  <h4 className="font-medium text-blue-800 mb-2">Торговые партнёры</h4>
+                  <div className="text-sm text-blue-700 space-y-1">
+                    <p><strong>Экспорт:</strong> электроника, ПО, продовольствие, автомобили</p>
+                    <p><strong>Импорт:</strong> сырьё, интеллектуальные услуги, ресурсы</p>
+                    <p><strong>Партнёры:</strong> Ортания, Кальвария, Вестмарк</p>
+                  </div>
+                </div>
+              </Card>
+            </div>
           </div>
         )}
 
@@ -283,6 +530,25 @@ const Index = () => {
                   <div className="text-2xl font-bold text-purple-600">250 тыс</div>
                   <div className="text-sm text-purple-700">Военный резерв</div>
                 </div>
+              </div>
+
+              <div className="grid lg:grid-cols-3 gap-6 mb-8">
+                {militaryStructure.map((branch, index) => (
+                  <Card key={index} className="p-4 bg-gray-50">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Icon name={branch.icon} size={24} className="text-blue-600" />
+                      <h4 className="font-semibold text-gray-900">{branch.branch}</h4>
+                    </div>
+                    <ul className="space-y-1 text-sm text-gray-700">
+                      {branch.equipment.map((item, idx) => (
+                        <li key={idx} className="flex items-center gap-2">
+                          <Icon name="Circle" size={8} className="text-blue-500" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                ))}
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -313,6 +579,237 @@ const Index = () => {
           </div>
         )}
 
+        {activeSection === 'government' && (
+          <div className="space-y-8 animate-fade-in">
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                <Icon name="Building" size={20} className="text-blue-600" />
+                Государственное устройство
+              </h3>
+              
+              <div className="grid lg:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="font-semibold mb-4 text-blue-700">Исполнительная власть</h4>
+                  <div className="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Icon name="Crown" size={20} className="text-blue-600" />
+                      <span className="font-medium">Президент Карл Маркес</span>
+                    </div>
+                    <p className="text-sm text-blue-700 mb-2">Избран в 2020 году, срок полномочий 5 лет</p>
+                    <ul className="text-sm text-blue-600 space-y-1">
+                      <li>• Возглавляет вооружённые силы</li>
+                      <li>• Управляет внешней политикой</li>
+                      <li>• Подписывает законы</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Icon name="UserCheck" size={20} className="text-green-600" />
+                      <span className="font-medium">Премьер-министр Лилия Вест</span>
+                    </div>
+                    <p className="text-sm text-green-700 mb-2">Формирует кабинет министров</p>
+                    <ul className="text-sm text-green-600 space-y-1">
+                      <li>• Руководит правительством</li>
+                      <li>• Реализует внутреннюю политику</li>
+                      <li>• Отвечает за экономику</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-4 text-purple-700">Законодательная власть — Парламент</h4>
+                  <div className="space-y-4">
+                    <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                      <div className="flex items-center gap-3 mb-2">
+                        <Icon name="Users" size={20} className="text-purple-600" />
+                        <span className="font-medium">Сенат (верхняя палата)</span>
+                      </div>
+                      <p className="text-sm text-purple-700">Представители регионов и провинций</p>
+                    </div>
+                    
+                    <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-200">
+                      <div className="flex items-center gap-3 mb-2">
+                        <Icon name="Vote" size={20} className="text-indigo-600" />
+                        <span className="font-medium">Палата народных депутатов</span>
+                      </div>
+                      <p className="text-sm text-indigo-700">Выборы каждые 4 года, представители народа</p>
+                    </div>
+                  </div>
+                  
+                  <h4 className="font-semibold mb-4 mt-6 text-orange-700">Федеративное устройство</h4>
+                  <div className="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                    <p className="text-sm text-orange-700">Республика состоит из 5 провинций и 2 столичных округов с широкой автономией в вопросах местного самоуправления.</p>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        )}
+
+        {activeSection === 'health-education' && (
+          <div className="space-y-8 animate-fade-in">
+            <div className="grid lg:grid-cols-2 gap-8">
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                  <Icon name="Heart" size={20} className="text-red-600" />
+                  Здравоохранение
+                </h3>
+                
+                <div className="space-y-4">
+                  <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+                    <div className="text-2xl font-bold text-red-600">72 млрд сашинов</div>
+                    <div className="text-sm text-red-700">Бюджет здравоохранения (20% от общего)</div>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-medium mb-3">Система здравоохранения</h4>
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex items-center gap-2">
+                        <Icon name="Building2" size={16} className="text-blue-500" />
+                        <span>Государственные поликлиники</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Icon name="Stethoscope" size={16} className="text-green-500" />
+                        <span>Частные медицинские клиники</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Icon name="Cpu" size={16} className="text-purple-500" />
+                        <span>Высокотехнологичное оборудование</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Icon name="Ambulance" size={16} className="text-red-500" />
+                        <span>Скорая медицинская помощь</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-blue-50 p-4 rounded-lg border">
+                    <h5 className="font-medium text-blue-800 mb-2">Особенности системы</h5>
+                    <p className="text-sm text-blue-700">Смешанная система: бесплатная государственная медицина и платные частные услуги высокого класса.</p>
+                  </div>
+                </div>
+              </Card>
+              
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                  <Icon name="GraduationCap" size={20} className="text-blue-600" />
+                  Образование
+                </h3>
+                
+                <div className="space-y-4">
+                  <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <div className="text-2xl font-bold text-blue-600">65 млрд сашинов</div>
+                    <div className="text-sm text-blue-700">Бюджет образования (18% от общего)</div>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-medium mb-3">Образовательная система</h4>
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex items-center gap-2">
+                        <Icon name="School" size={16} className="text-green-500" />
+                        <span>Сеть государственных школ</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Icon name="University" size={16} className="text-purple-500" />
+                        <span>Университеты и институты</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Icon name="Laptop" size={16} className="text-blue-500" />
+                        <span>IT-образование и технологии</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Icon name="Microscope" size={16} className="text-orange-500" />
+                        <span>Научные исследования</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-purple-50 p-4 rounded-lg border">
+                    <h5 className="font-medium text-purple-800 mb-2">Ведущие учебные заведения</h5>
+                    <div className="space-y-1 text-sm text-purple-700">
+                      <p>• Асхинийский технический университет</p>
+                      <p>• Институт космических технологий</p>
+                      <p>• Сашианийская академия наук</p>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+        )}
+
+        {activeSection === 'culture' && (
+          <div className="space-y-8 animate-fade-in">
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                <Icon name="Heart" size={20} className="text-pink-600" />
+                Культура и традиции
+              </h3>
+              
+              <div className="grid lg:grid-cols-2 gap-8">
+                <div>
+                  <div className="bg-pink-50 p-4 rounded-lg border border-pink-200 mb-6">
+                    <div className="text-2xl font-bold text-pink-600">11 млрд сашинов</div>
+                    <div className="text-sm text-pink-700">Бюджет на культуру (3.1% от общего)</div>
+                  </div>
+                  
+                  <h4 className="font-semibold mb-4 text-purple-700">Культурные учреждения</h4>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <Icon name="Theater" size={20} className="text-red-500" />
+                      <span>Национальные театры</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Icon name="Museum" size={20} className="text-blue-500" />
+                      <span>Музеи и галереи</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Icon name="Film" size={20} className="text-purple-500" />
+                      <span>Киноиндустрия</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Icon name="Music" size={20} className="text-green-500" />
+                      <span>Концертные залы</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-4 text-amber-700">Национальные праздники</h4>
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 p-4 rounded-lg border">
+                      <div className="flex items-center gap-3 mb-2">
+                        <Icon name="Flag" size={20} className="text-blue-600" />
+                        <span className="font-medium">День Независимости</span>
+                      </div>
+                      <p className="text-sm text-blue-700">15 августа — главный государственный праздник</p>
+                    </div>
+                    
+                    <div className="bg-amber-50 p-4 rounded-lg border">
+                      <div className="flex items-center gap-3 mb-2">
+                        <Icon name="Wheat" size={20} className="text-amber-600" />
+                        <span className="font-medium">Праздник Колоса</span>
+                      </div>
+                      <p className="text-sm text-amber-700">Традиционное сашианийское рождество, празднование урожая</p>
+                    </div>
+                  </div>
+                  
+                  <h4 className="font-semibold mb-3 mt-6 text-green-700">Культурные особенности</h4>
+                  <div className="bg-green-50 p-4 rounded-lg border">
+                    <ul className="text-sm text-green-700 space-y-1">
+                      <li>• Богатые традиции виноделия</li>
+                      <li>• Народные ремёсла и искусства</li>
+                      <li>• Многонациональная кухня</li>
+                      <li>• Фестивали и культурные мероприятия</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        )}
+
         {activeSection === 'regions' && (
           <div className="space-y-8 animate-fade-in">
             <Card className="p-6">
@@ -323,7 +820,7 @@ const Index = () => {
               
               <div className="grid gap-4">
                 {provinces.map((province, index) => (
-                  <div key={index} className="bg-gray-50 p-4 rounded-lg border hover:shadow-md transition-shadow">
+                  <div key={index} className="bg-gray-50 p-4 rounded-lg border hover:shadow-md transition-shadow cursor-pointer">
                     <div className="flex justify-between items-start mb-2">
                       <h4 className="font-semibold text-gray-900">{province.name}</h4>
                       <Badge variant="outline" className="bg-blue-50 text-blue-700">
@@ -359,7 +856,7 @@ const Index = () => {
                 Космическая программа Сашиании
               </h3>
               
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 <div className="bg-white p-4 rounded-lg border border-indigo-200">
                   <div className="flex items-center gap-3 mb-3">
                     <Icon name="Satellite" size={24} className="text-indigo-600" />
@@ -386,51 +883,42 @@ const Index = () => {
                   <div className="text-xl font-bold text-blue-700">21,6 млрд</div>
                   <div className="text-sm text-blue-600">сашинов (40% от науки)</div>
                 </div>
+                
+                <div className="bg-white p-4 rounded-lg border border-emerald-200">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Icon name="Target" size={24} className="text-emerald-600" />
+                    <span className="font-medium">Миссии</span>
+                  </div>
+                  <div className="text-xl font-bold text-emerald-700">15+</div>
+                  <div className="text-sm text-emerald-600">Успешных запусков</div>
+                </div>
               </div>
-
-              <div className="mt-6 p-4 bg-white/80 rounded-lg border border-indigo-100">
-                <h4 className="font-medium text-indigo-800 mb-2">Космические достижения</h4>
-                <div className="grid md:grid-cols-2 gap-4 text-sm">
-                  <div className="flex items-center gap-2">
-                    <Icon name="CheckCircle" size={16} className="text-green-500" />
-                    <span>Система спутников связи</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Icon name="CheckCircle" size={16} className="text-green-500" />
-                    <span>Метеорологические спутники</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Icon name="CheckCircle" size={16} className="text-green-500" />
-                    <span>Спутники наблюдения Земли</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Icon name="CheckCircle" size={16} className="text-green-500" />
-                    <span>Научные исследования в космосе</span>
+              
+              <div className="space-y-6">
+                <div className="mt-6 p-4 bg-white/80 rounded-lg border border-indigo-100">
+                  <h4 className="font-medium text-indigo-800 mb-2">Космические достижения</h4>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm">
+                    <div className="flex items-center gap-2">
+                      <Icon name="CheckCircle" size={16} className="text-green-500" />
+                      <span>Система спутников связи</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="CheckCircle" size={16} className="text-green-500" />
+                      <span>Метеорологические спутники</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="CheckCircle" size={16} className="text-green-500" />
+                      <span>Спутники наблюдения Земли</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="CheckCircle" size={16} className="text-green-500" />
+                      <span>Научные исследования в космосе</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </Card>
           </div>
-        )}
-
-        {/* Placeholder контент для остальных разделов */}
-        {['geography', 'history', 'government', 'health-education', 'culture'].includes(activeSection) && (
-          <Card className="p-8 text-center animate-fade-in">
-            <Icon name="Construction" size={48} className="mx-auto text-gray-400 mb-4" />
-            <h3 className="text-xl font-semibold text-gray-700 mb-2">
-              {sections.find(s => s.id === activeSection)?.title}
-            </h3>
-            <p className="text-gray-600">
-              Раздел находится в разработке. Подробная информация будет добавлена в следующих обновлениях.
-            </p>
-            <Button 
-              variant="outline" 
-              className="mt-4"
-              onClick={() => setActiveSection('overview')}
-            >
-              Вернуться к обзору
-            </Button>
-          </Card>
         )}
       </main>
 
@@ -448,9 +936,15 @@ const Index = () => {
             <div>
               <h4 className="font-semibold mb-4">Быстрые ссылки</h4>
               <div className="space-y-2 text-sm">
-                <div className="text-gray-400">Международные отношения</div>
-                <div className="text-gray-400">Торговые партнёры</div>
-                <div className="text-gray-400">Климатические данные</div>
+                <button onClick={() => setActiveSection('government')} className="block text-gray-400 hover:text-white transition-colors">
+                  Международные отношения
+                </button>
+                <button onClick={() => setActiveSection('economy')} className="block text-gray-400 hover:text-white transition-colors">
+                  Торговые партнёры
+                </button>
+                <button onClick={() => setActiveSection('geography')} className="block text-gray-400 hover:text-white transition-colors">
+                  Климатические данные
+                </button>
               </div>
             </div>
             <div>
@@ -468,6 +962,15 @@ const Index = () => {
                   <Icon name="Clock" size={16} />
                   UTC+3 (AST)
                 </div>
+                <a 
+                  href="https://t.me/TheSashianianRepublic" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  <Icon name="MessageCircle" size={16} />
+                  Официальный Telegram
+                </a>
               </div>
             </div>
           </div>
